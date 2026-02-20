@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Camera Capture</title>
+</head>
+
+<body style="text-align:center; background:#e0f7fa;">
+
+<h2>📷 Brinjal Leaf Live Capture</h2>
+
+<video id="video" width="400" autoplay></video>
+<br><br>
+
+<button onclick="capturePhoto()">📸 Capture Photo</button>
+
+<p id="msg" style="color:red; font-weight:bold;">{{ error }}</p>
+
+<form id="captureForm" method="POST" action="/capture">
+  <input type="hidden" name="image" id="imageData">
+</form>
+
+<a href="/">
+  <button style="margin-top:15px;">⬅ Back to Dashboard</button>
+</a>
+
+<script>
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+  document.getElementById("video").srcObject = stream;
+});
+
+function capturePhoto() {
+  let video = document.getElementById("video");
+  let canvas = document.createElement("canvas");
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  let ctx = canvas.getContext("2d");
+  ctx.drawImage(video, 0, 0);
+
+  let imageData = canvas.toDataURL("image/jpeg");
+  document.getElementById("imageData").value = imageData;
+
+  document.getElementById("captureForm").submit();
+}
+</script>
+
+</body>
+</html>

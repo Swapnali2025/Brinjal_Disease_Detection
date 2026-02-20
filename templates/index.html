@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Brinjal Disease Detection</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<a href="/" class="back-dashboard-btn">⬅ Back to Dashboard</a>
+
+<div class="dashboard">
+
+<!-- LEFT PANEL -->
+<div class="panel upload-panel">
+
+<h2>📤 Upload Leaf Image</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="upload-box">
+<label>
+Click or Select Image
+<input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+</label>
+</div>
+
+<img id="preview" class="preview-img">
+
+<button type="submit" onclick="showLoader()">
+🔍 Detect Disease
+</button>
+
+<div id="loader" class="loader"></div>
+
+</form>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="panel result-panel">
+
+<h2>📊 Detection Result</h2>
+
+{% if error %}
+  <div class="error-box">
+    {{ error }}
+  </div>
+{% endif %}
+
+{% if prediction %}
+
+<div class="result-box">
+
+<h3>Disease</h3>
+<span class="badge">{{ prediction }}</span>
+
+<h3>Severity</h3>
+<span class="severity {{ severity }}">{{ severity }}</span>
+
+<h3>Medicine</h3>
+<p class="medicine">{{ medicine }}</p>
+
+<h3>Confidence</h3>
+
+<div class="progress-container">
+  <div class="progress-bar" style="width: {{ confidence }}%;">
+    {{ confidence }}%
+  </div>
+</div>
+
+<img src="{{ image_path }}" class="result-img">
+
+<br>
+
+
+</div>
+
+<script>
+let msg = new SpeechSynthesisUtterance(
+  "Disease detected {{ prediction }}. Recommended medicine {{ medicine }}"
+);
+speechSynthesis.speak(msg);
+</script>
+
+{% else %}
+
+<p class="no-result">Upload an image to see result</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<script>
+function previewImage(event){
+  var reader = new FileReader();
+  reader.onload = function(){
+    var output = document.getElementById("preview");
+    output.src = reader.result;
+    output.style.display = "block";
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function showLoader(){
+  document.getElementById("loader").style.display="block";
+}
+</script>
+
+</body>
+</html>

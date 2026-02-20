@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reports</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<a href="/" class="back-dashboard-btn">⬅ Back to Dashboard</a>
+
+<h2 style="text-align:center;margin-top:30px;">📄 Reports</h2>
+
+<table class="history-table" style="width:80%;margin:auto;margin-top:30px;">
+<tr>
+  <th>ID</th>
+  <th>Disease</th>
+  <th>Confidence</th>
+  <th>Date</th>
+  <th>Action</th>
+</tr>
+
+{% for r in reports %}
+<tr>
+  <td>{{ r[0] }}</td>
+  <td>{{ r[1] }}</td>
+  <td>{{ r[2] }}%</td>
+  <td>{{ r[3] }}</td>
+  <td>
+    <a href="/download/{{ r[0] }}">
+      <button>⬇ Download</button>
+    </a>
+  </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+* {
+    box-sizing: border-box;
+   }
+   
+   /* BODY */
+   
+   body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg,#1fa2ff,#12d8fa,#a6ffcb);
+    font-family: Segoe UI, Arial;
+   }
+   
+   /* DASHBOARD LAYOUT */
+   
+   .dashboard {
+    display: flex;
+    height: 100vh;
+    padding: 20px;
+    gap: 20px;
+   }
+   
+   /* PANEL COMMON */
+   
+   .panel {
+    flex: 1;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    overflow-y: auto;
+   }
+   
+   /* TITLES */
+   
+   .panel h2 {
+    text-align: center;
+    color: #004d40;
+   }
+   
+   /* UPLOAD BOX */
+   
+   .upload-box {
+    border: 2px dashed #009688;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    background: rgba(255,255,255,0.6);
+   }
+   
+   .upload-box input {
+    display: none;
+   }
+   
+   .upload-box label {
+    font-weight: bold;
+    cursor: pointer;
+    color: #00695c;
+   }
+   
+   /* PREVIEW IMAGE */
+   
+   .preview-img {
+    width: 220px;
+    margin: 15px auto;
+    display: none;
+    border-radius: 12px;
+    border: 2px solid #009688;
+   }
+   
+   /* BUTTON */
+   
+   button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    margin-top: 12px;
+    background: linear-gradient(to right,#00b09b,#96c93d);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+   }
+   
+   button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00b09b;
+   }
+   
+   /* LOADER */
+   
+   .loader {
+    display: none;
+    margin: 15px auto;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #009688;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+   }
+   
+   /* RESULT BOX */
+   
+   .result-box {
+    background: rgba(255,255,255,0.9);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+   }
+   
+   /* BADGE */
+   
+   .badge {
+    background: crimson;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+   }
+   
+   /* SEVERITY */
+   
+   .severity {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+   }
+   
+   .HIGH { background: red; color: white; }
+   .MEDIUM { background: orange; color: white; }
+   .LOW { background: green; color: white; }
+   
+   /* MEDICINE */
+   
+   .medicine {
+    color: green;
+    font-weight: bold;
+   }
+   
+   /* PROGRESS BAR */
+   
+   .progress-container {
+    width: 100%;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+   }
+   
+   .progress-bar {
+    height: 20px;
+    background: linear-gradient(to right,#43cea2,#185a9d);
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    line-height: 20px;
+   }
+   
+   /* RESULT IMAGE */
+   
+   .result-img {
+    width: 200px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 2px solid green;
+   }
+   
+   /* HISTORY TABLE */
+   
+   .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+   }
+   
+   .history-table th,
+   .history-table td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    font-size: 13px;
+    text-align: center;
+   }
+   
+   .history-table th {
+    background: #009688;
+    color: white;
+   }
+   
+   .history-img {
+    width: 45px;
+    border-radius: 6px;
+   }
+   
+   /* NO RESULT */
+   
+   .no-result {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 16px;
+    color: #333;
+   }
+   
+   /* ANIMATION */
+   
+   @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+   }
+   
+   /* MOBILE RESPONSIVE */
+   
+   @media(max-width: 800px){
+   
+   .dashboard {
+    flex-direction: column;
+    height: auto;
+   }
+   
+   }
+   /* ================= HISTORY PAGE ================= */
+
+.history-container {
+    padding: 40px;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #1fa2ff, #12d8fa, #a6ffcb);
+  }
+  
+  .history-card {
+    background: #eaffff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .history-table th,
+  .history-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .history-table th {
+    background: #b2ebf2;
+    color: #004d40;
+  }
+  
+  .history-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .back-btn {
+    padding: 10px 20px;
+    background: #009688;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+/* ================= BACK TO DASHBOARD BUTTON ================= */
+
+.back-dashboard-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 16px;
+    background: #00695c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  .back-dashboard-btn:hover {
+    background: #004d40;
+  }
+  .error-box{
+    background:#ffe0e0;
+    color:#b00000;
+    padding:12px;
+    border-radius:8px;
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:bold;
+  }
+      
+   

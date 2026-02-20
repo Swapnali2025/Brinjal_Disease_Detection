@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Camera Result</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<a href="/">
+<button class="back-btn">⬅ Back to Dashboard</button>
+</a>
+
+<div class="result-panel" style="margin:50px auto; width:60%;">
+
+<h2>📊 Detection Result</h2>
+
+{% if error %}
+  <div class="error-box">❌ {{ error }}</div>
+{% else %}
+
+<h3>Disease</h3>
+<span class="badge">{{ prediction }}</span>
+
+<h3>Severity</h3>
+<span class="severity {{ severity }}">{{ severity }}</span>
+
+<h3>Medicine</h3>
+<p class="medicine">{{ medicine }}</p>
+
+<h3>Confidence</h3>
+<div class="progress-container">
+  <div class="progress-bar" style="width: {{ confidence }}%;">
+    {{ confidence }}%
+  </div>
+</div>
+
+<img src="{{ image_path }}" class="result-img">
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction History</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<a href="/" class="back-dashboard-btn">⬅ Back to Dashboard</a>
+
+<div class="panel result-panel" style="margin:40px auto; width:90%;">
+
+<h2>📜 Prediction History</h2>
+
+<table class="history-table">
+<tr>
+  <th>Image</th>
+  <th>Disease</th>
+  <th>Accuracy</th>
+  <th>Time</th>
+  <th>Action</th>
+</tr>
+
+{% for row in history %}
+<tr>
+  <td><img src="{{ row[4] }}" class="history-img"></td>
+  <td>{{ row[1] }}</td>
+  <td>{{ row[2] }}%</td>
+  <td>{{ row[5] }}</td>
+  <td>
+    <a href="/delete/{{ row[0] }}"
+       onclick="return confirm('Are you sure you want to delete this record?')">
+       🗑️ Delete
+    </a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+
+<a href="/delete_all"
+   onclick="return confirm('Delete ALL history? This cannot be undone!')">
+<button style="background:red;color:white;padding:10px 16px;border:none;border-radius:6px;">
+🧹 Delete All History
+</button>
+</a>
+
+</div>
+
+</body>
+</html>
