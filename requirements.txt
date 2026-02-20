@@ -4,5 +4,7 @@ tensorflow-cpu==2.15.0
 numpy==1.26.4
 pillow==10.3.0
 reportlab
+Flask-MySQLdb==1.0.1
+
 
 
