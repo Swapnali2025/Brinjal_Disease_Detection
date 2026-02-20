@@ -15,8 +15,13 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 # LOAD MODEL
-model = load_model("model/brinjal_disease_model.h5")
+model = None
 
+def get_model():
+    global model
+    if model is None:
+        model = load_model("model/brinjal_disease_model.h5")
+    return model
 with open("model/class_labels.json", "r") as f:
     class_indices = json.load(f)
 
@@ -51,6 +56,7 @@ def upload():
         img_array = image.img_to_array(img) / 255.0
         img_array = np.expand_dims(img_array, axis=0)
 
+        model = get_model()
         result = model.predict(img_array)
         pred_index = np.argmax(result)
 
@@ -93,6 +99,7 @@ def capture():
     img_array = image.img_to_array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
+    model = get_model()
     result = model.predict(img_array)
     pred_index = np.argmax(result)
     confidence = round(result[0][pred_index] * 100, 2)
@@ -117,6 +124,5 @@ def capture():
     )
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
